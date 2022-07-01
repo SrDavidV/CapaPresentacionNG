@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CapaPresentacionNG.TBL_Administrador>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Administradores</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Apellido
+        </th>
+        <th>
+            Genero
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Telefono
+        </th>
+        <th>
+            Restaurante Admin
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ADM_Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ADM_Apellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ADM_Genero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ADM_CorreoElectronico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ADM_Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TBL_Restaurante.RESTA_Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PK_Cedula_Administrador }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PK_Cedula_Administrador }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PK_Cedula_Administrador })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,75 @@
+﻿@model CapaPresentacionNG.TBL_Administrador
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TBL_Administrador</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ADM_Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADM_Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADM_Apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADM_Apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADM_Genero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADM_Genero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADM_CorreoElectronico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADM_CorreoElectronico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADM_Contrasena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADM_Contrasena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADM_Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADM_Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TBL_Restaurante.RESTA_Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TBL_Restaurante.RESTA_Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PK_Cedula_Administrador }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

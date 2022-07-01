@@ -1,0 +1,59 @@
+﻿@model CapaPresentacionNG.TBL_Resena
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TBL_Resena</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RES_Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RES_Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RES_Calificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RES_Calificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RES_Opinion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RES_Opinion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TBL_Cliente.CLI_Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TBL_Cliente.CLI_Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TBL_Restaurante.RESTA_Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TBL_Restaurante.RESTA_Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PK_CodigoReseña }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

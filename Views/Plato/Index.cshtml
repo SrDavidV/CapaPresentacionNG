@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CapaPresentacionNG.TBL_Plato>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Platos</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Plato
+        </th>
+        <th>
+            Precio
+        </th>
+        <th>
+            Descripción
+        </th>
+        <th>
+            Ingredientes
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PLA_NombrePlato)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PLA_Precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PLA_Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PLA_Ingredientes)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PK_CodigoPlato }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PK_CodigoPlato }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PK_CodigoPlato })
+        </td>
+    </tr>
+}
+
+</table>

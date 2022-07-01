@@ -1,0 +1,81 @@
+﻿@model CapaPresentacionNG.TBL_Administrador
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TBL_Administrador</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ADM_Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADM_Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADM_Apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADM_Apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADM_Genero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADM_Genero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADM_CorreoElectronico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADM_CorreoElectronico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADM_Contrasena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADM_Contrasena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADM_Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADM_Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TBL_Restaurante.RESTA_Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TBL_Restaurante.RESTA_Nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

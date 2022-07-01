@@ -1,0 +1,51 @@
+﻿@model CapaPresentacionNG.TBL_Plato
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TBL_Plato</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PLA_NombrePlato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PLA_NombrePlato)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PLA_Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PLA_Precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PLA_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PLA_Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PLA_Ingredientes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PLA_Ingredientes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PK_CodigoPlato }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

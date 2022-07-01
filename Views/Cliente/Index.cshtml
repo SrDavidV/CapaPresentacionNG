@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CapaPresentacionNG.TBL_Cliente>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Usuarios</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+           Apellido
+        </th>
+        <th>
+            Genero
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Telefono
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_Apellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_Genero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_CorreoElectronico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_Telefono)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PK_Cedula_Cliente }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PK_Cedula_Cliente }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PK_Cedula_Cliente })
+        </td>
+    </tr>
+}
+
+</table>

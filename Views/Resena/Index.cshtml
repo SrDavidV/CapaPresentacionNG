@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CapaPresentacionNG.TBL_Resena>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reseñas</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Fecha creación
+        </th>
+        <th>
+            Calificación
+        </th>
+        <th>
+            Opinión
+        </th>
+        <th>
+            Usuario
+        </th>
+        <th>
+           Restaurante
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RES_Fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RES_Calificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RES_Opinion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TBL_Cliente.CLI_Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TBL_Restaurante.RESTA_Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PK_CodigoReseña }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PK_CodigoReseña }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PK_CodigoReseña })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,1002 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBS_NEIGHBORFOOD2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBL_Administrador">
+          <Key>
+            <PropertyRef Name="PK_Cedula_Administrador" />
+          </Key>
+          <Property Name="PK_Cedula_Administrador" Type="int" Nullable="false" />
+          <Property Name="ADM_Nombre" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="ADM_Apellido" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="ADM_Genero" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="ADM_CorreoElectronico" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="ADM_Contrasena" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="ADM_Telefono" Type="int" Nullable="false" />
+          <Property Name="FK_CodRestaurante" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_Cliente">
+          <Key>
+            <PropertyRef Name="PK_Cedula_Cliente" />
+          </Key>
+          <Property Name="PK_Cedula_Cliente" Type="int" Nullable="false" />
+          <Property Name="CLI_Nombre" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="CLI_Apellido" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="CLI_Genero" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="CLI_CorreoElectronico" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CLI_FechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="CLI_Ciudad" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="CLI_Barrio" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="CLI_Telefono" Type="int" Nullable="false" />
+          <Property Name="CLI_Contrasena" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_Cliente_Preferencia">
+          <Key>
+            <PropertyRef Name="clienteId" />
+            <PropertyRef Name="preferenciaId" />
+          </Key>
+          <Property Name="clienteId" Type="int" Nullable="false" />
+          <Property Name="preferenciaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_Cliente_Puntos">
+          <Key>
+            <PropertyRef Name="clienteId" />
+            <PropertyRef Name="puntosId" />
+          </Key>
+          <Property Name="clienteId" Type="int" Nullable="false" />
+          <Property Name="puntosId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_Cliente_Resena">
+          <Key>
+            <PropertyRef Name="clienteId" />
+            <PropertyRef Name="resenaId" />
+          </Key>
+          <Property Name="clienteId" Type="int" Nullable="false" />
+          <Property Name="resenaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_Menu">
+          <Key>
+            <PropertyRef Name="PK_CodigoMenu" />
+          </Key>
+          <Property Name="PK_CodigoMenu" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_MENU_PLATO">
+          <Key>
+            <PropertyRef Name="platoId" />
+            <PropertyRef Name="menuId" />
+          </Key>
+          <Property Name="platoId" Type="int" Nullable="false" />
+          <Property Name="menuId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_Plato">
+          <Key>
+            <PropertyRef Name="PK_CodigoPlato" />
+          </Key>
+          <Property Name="PK_CodigoPlato" Type="int" Nullable="false" />
+          <Property Name="PLA_NombrePlato" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="PLA_Precio" Type="float" Nullable="false" />
+          <Property Name="PLA_Descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="PLA_Ingredientes" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_Preferencias">
+          <Key>
+            <PropertyRef Name="PK_PrefID" />
+          </Key>
+          <Property Name="PK_PrefID" Type="int" Nullable="false" />
+          <Property Name="PRE_Tematica" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="FK_RestauranteID" Type="int" Nullable="false" />
+          <Property Name="FK_PlatoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_Promociones">
+          <Key>
+            <PropertyRef Name="PK_PromocionId" />
+          </Key>
+          <Property Name="PK_PromocionId" Type="int" Nullable="false" />
+          <Property Name="PRO_Descuento" Type="float" Nullable="false" />
+          <Property Name="PRO_puntosParaCanjear" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_Puntos">
+          <Key>
+            <PropertyRef Name="PK_CodigoPuntos" />
+          </Key>
+          <Property Name="PK_CodigoPuntos" Type="int" Nullable="false" />
+          <Property Name="PUN_Cantidad" Type="int" />
+          <Property Name="PUN_FechaCreacion" Type="date" Nullable="false" />
+          <Property Name="PUN_FechaCaducidad" Type="date" />
+        </EntityType>
+        <EntityType Name="TBL_Resena">
+          <Key>
+            <PropertyRef Name="PK_CodigoReseña" />
+          </Key>
+          <Property Name="PK_CodigoReseña" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RES_Fecha" Type="date" Nullable="false" />
+          <Property Name="RES_Calificacion" Type="float" Nullable="false" />
+          <Property Name="RES_Opinion" Type="varchar" MaxLength="500" />
+          <Property Name="FK_CodCliente" Type="int" Nullable="false" />
+          <Property Name="FK_CodRestaurante" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_Restaurante">
+          <Key>
+            <PropertyRef Name="PK_CodigoRestaurante" />
+          </Key>
+          <Property Name="PK_CodigoRestaurante" Type="int" Nullable="false" />
+          <Property Name="RESTA_Nombre" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="RESTA_Telefono" Type="int" Nullable="false" />
+          <Property Name="RESTA_Correo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FK_CodigoAdmin" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_Restaurante_Promociones">
+          <Key>
+            <PropertyRef Name="RestauranteId" />
+            <PropertyRef Name="promoId" />
+          </Key>
+          <Property Name="RestauranteId" Type="int" Nullable="false" />
+          <Property Name="promoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_Restaurante_Sedes">
+          <Key>
+            <PropertyRef Name="RestauranteId" />
+            <PropertyRef Name="sedeId" />
+          </Key>
+          <Property Name="RestauranteId" Type="int" Nullable="false" />
+          <Property Name="sedeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_SEDE">
+          <Key>
+            <PropertyRef Name="PK_SedeID" />
+          </Key>
+          <Property Name="PK_SedeID" Type="int" Nullable="false" />
+          <Property Name="SED_Direccion" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="SED_Telefono" Type="bigint" Nullable="false" />
+          <Property Name="FK_MenuID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__TBL_Clien__clien__4D94879B">
+          <End Role="TBL_Cliente" Type="Self.TBL_Cliente" Multiplicity="1" />
+          <End Role="TBL_Cliente_Resena" Type="Self.TBL_Cliente_Resena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Cliente">
+              <PropertyRef Name="PK_Cedula_Cliente" />
+            </Principal>
+            <Dependent Role="TBL_Cliente_Resena">
+              <PropertyRef Name="clienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_Clien__clien__5165187F">
+          <End Role="TBL_Cliente" Type="Self.TBL_Cliente" Multiplicity="1" />
+          <End Role="TBL_Cliente_Preferencia" Type="Self.TBL_Cliente_Preferencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Cliente">
+              <PropertyRef Name="PK_Cedula_Cliente" />
+            </Principal>
+            <Dependent Role="TBL_Cliente_Preferencia">
+              <PropertyRef Name="clienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_Clien__clien__5535A963">
+          <End Role="TBL_Cliente" Type="Self.TBL_Cliente" Multiplicity="1" />
+          <End Role="TBL_Cliente_Puntos" Type="Self.TBL_Cliente_Puntos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Cliente">
+              <PropertyRef Name="PK_Cedula_Cliente" />
+            </Principal>
+            <Dependent Role="TBL_Cliente_Puntos">
+              <PropertyRef Name="clienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_Clien__prefe__52593CB8">
+          <End Role="TBL_Preferencias" Type="Self.TBL_Preferencias" Multiplicity="1" />
+          <End Role="TBL_Cliente_Preferencia" Type="Self.TBL_Cliente_Preferencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Preferencias">
+              <PropertyRef Name="PK_PrefID" />
+            </Principal>
+            <Dependent Role="TBL_Cliente_Preferencia">
+              <PropertyRef Name="preferenciaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_Clien__punto__5629CD9C">
+          <End Role="TBL_Puntos" Type="Self.TBL_Puntos" Multiplicity="1" />
+          <End Role="TBL_Cliente_Puntos" Type="Self.TBL_Cliente_Puntos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Puntos">
+              <PropertyRef Name="PK_CodigoPuntos" />
+            </Principal>
+            <Dependent Role="TBL_Cliente_Puntos">
+              <PropertyRef Name="puntosId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_Clien__resen__4E88ABD4">
+          <End Role="TBL_Resena" Type="Self.TBL_Resena" Multiplicity="1" />
+          <End Role="TBL_Cliente_Resena" Type="Self.TBL_Cliente_Resena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Resena">
+              <PropertyRef Name="PK_CodigoReseña" />
+            </Principal>
+            <Dependent Role="TBL_Cliente_Resena">
+              <PropertyRef Name="resenaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_MENU___menuI__4AB81AF0">
+          <End Role="TBL_Menu" Type="Self.TBL_Menu" Multiplicity="1" />
+          <End Role="TBL_MENU_PLATO" Type="Self.TBL_MENU_PLATO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Menu">
+              <PropertyRef Name="PK_CodigoMenu" />
+            </Principal>
+            <Dependent Role="TBL_MENU_PLATO">
+              <PropertyRef Name="menuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_MENU___plato__49C3F6B7">
+          <End Role="TBL_Plato" Type="Self.TBL_Plato" Multiplicity="1" />
+          <End Role="TBL_MENU_PLATO" Type="Self.TBL_MENU_PLATO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Plato">
+              <PropertyRef Name="PK_CodigoPlato" />
+            </Principal>
+            <Dependent Role="TBL_MENU_PLATO">
+              <PropertyRef Name="platoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_Resta__promo__5DCAEF64">
+          <End Role="TBL_Promociones" Type="Self.TBL_Promociones" Multiplicity="1" />
+          <End Role="TBL_Restaurante_Promociones" Type="Self.TBL_Restaurante_Promociones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Promociones">
+              <PropertyRef Name="PK_PromocionId" />
+            </Principal>
+            <Dependent Role="TBL_Restaurante_Promociones">
+              <PropertyRef Name="promoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_Resta__Resta__59063A47">
+          <End Role="TBL_Restaurante" Type="Self.TBL_Restaurante" Multiplicity="1" />
+          <End Role="TBL_Restaurante_Sedes" Type="Self.TBL_Restaurante_Sedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Restaurante">
+              <PropertyRef Name="PK_CodigoRestaurante" />
+            </Principal>
+            <Dependent Role="TBL_Restaurante_Sedes">
+              <PropertyRef Name="RestauranteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_Resta__Resta__5CD6CB2B">
+          <End Role="TBL_Restaurante" Type="Self.TBL_Restaurante" Multiplicity="1" />
+          <End Role="TBL_Restaurante_Promociones" Type="Self.TBL_Restaurante_Promociones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Restaurante">
+              <PropertyRef Name="PK_CodigoRestaurante" />
+            </Principal>
+            <Dependent Role="TBL_Restaurante_Promociones">
+              <PropertyRef Name="RestauranteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_Resta__sedeI__59FA5E80">
+          <End Role="TBL_SEDE" Type="Self.TBL_SEDE" Multiplicity="1" />
+          <End Role="TBL_Restaurante_Sedes" Type="Self.TBL_Restaurante_Sedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_SEDE">
+              <PropertyRef Name="PK_SedeID" />
+            </Principal>
+            <Dependent Role="TBL_Restaurante_Sedes">
+              <PropertyRef Name="sedeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Administrador_TBL_Restaurante">
+          <End Role="TBL_Restaurante" Type="Self.TBL_Restaurante" Multiplicity="1" />
+          <End Role="TBL_Administrador" Type="Self.TBL_Administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Restaurante">
+              <PropertyRef Name="PK_CodigoRestaurante" />
+            </Principal>
+            <Dependent Role="TBL_Administrador">
+              <PropertyRef Name="FK_CodRestaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Preferencias_TBL_Plato">
+          <End Role="TBL_Plato" Type="Self.TBL_Plato" Multiplicity="1" />
+          <End Role="TBL_Preferencias" Type="Self.TBL_Preferencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Plato">
+              <PropertyRef Name="PK_CodigoPlato" />
+            </Principal>
+            <Dependent Role="TBL_Preferencias">
+              <PropertyRef Name="FK_PlatoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Preferencias_TBL_Restaurante">
+          <End Role="TBL_Restaurante" Type="Self.TBL_Restaurante" Multiplicity="1" />
+          <End Role="TBL_Preferencias" Type="Self.TBL_Preferencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Restaurante">
+              <PropertyRef Name="PK_CodigoRestaurante" />
+            </Principal>
+            <Dependent Role="TBL_Preferencias">
+              <PropertyRef Name="FK_RestauranteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Resena_TBL_Cliente">
+          <End Role="TBL_Cliente" Type="Self.TBL_Cliente" Multiplicity="1" />
+          <End Role="TBL_Resena" Type="Self.TBL_Resena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Cliente">
+              <PropertyRef Name="PK_Cedula_Cliente" />
+            </Principal>
+            <Dependent Role="TBL_Resena">
+              <PropertyRef Name="FK_CodCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Resena_TBL_Restaurante">
+          <End Role="TBL_Restaurante" Type="Self.TBL_Restaurante" Multiplicity="1" />
+          <End Role="TBL_Resena" Type="Self.TBL_Resena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Restaurante">
+              <PropertyRef Name="PK_CodigoRestaurante" />
+            </Principal>
+            <Dependent Role="TBL_Resena">
+              <PropertyRef Name="FK_CodRestaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Restaurante_TBL_Administrador">
+          <End Role="TBL_Administrador" Type="Self.TBL_Administrador" Multiplicity="0..1" />
+          <End Role="TBL_Restaurante" Type="Self.TBL_Restaurante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Administrador">
+              <PropertyRef Name="PK_Cedula_Administrador" />
+            </Principal>
+            <Dependent Role="TBL_Restaurante">
+              <PropertyRef Name="FK_CodigoAdmin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Restaurante_TBL_Restaurante">
+          <End Role="TBL_Restaurante" Type="Self.TBL_Restaurante" Multiplicity="1" />
+          <End Role="TBL_Restaurante1" Type="Self.TBL_Restaurante" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Restaurante">
+              <PropertyRef Name="PK_CodigoRestaurante" />
+            </Principal>
+            <Dependent Role="TBL_Restaurante1">
+              <PropertyRef Name="PK_CodigoRestaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SEDE_TBL_Menu">
+          <End Role="TBL_Menu" Type="Self.TBL_Menu" Multiplicity="1" />
+          <End Role="TBL_SEDE" Type="Self.TBL_SEDE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Menu">
+              <PropertyRef Name="PK_CodigoMenu" />
+            </Principal>
+            <Dependent Role="TBL_SEDE">
+              <PropertyRef Name="FK_MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBS_NEIGHBORFOOD2ModelStoreContainer">
+          <EntitySet Name="TBL_Administrador" EntityType="Self.TBL_Administrador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Cliente" EntityType="Self.TBL_Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Cliente_Preferencia" EntityType="Self.TBL_Cliente_Preferencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Cliente_Puntos" EntityType="Self.TBL_Cliente_Puntos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Cliente_Resena" EntityType="Self.TBL_Cliente_Resena" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Menu" EntityType="Self.TBL_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_MENU_PLATO" EntityType="Self.TBL_MENU_PLATO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Plato" EntityType="Self.TBL_Plato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Preferencias" EntityType="Self.TBL_Preferencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Promociones" EntityType="Self.TBL_Promociones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Puntos" EntityType="Self.TBL_Puntos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Resena" EntityType="Self.TBL_Resena" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Restaurante" EntityType="Self.TBL_Restaurante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Restaurante_Promociones" EntityType="Self.TBL_Restaurante_Promociones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Restaurante_Sedes" EntityType="Self.TBL_Restaurante_Sedes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_SEDE" EntityType="Self.TBL_SEDE" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TBL_Clien__clien__4D94879B" Association="Self.FK__TBL_Clien__clien__4D94879B">
+            <End Role="TBL_Cliente" EntitySet="TBL_Cliente" />
+            <End Role="TBL_Cliente_Resena" EntitySet="TBL_Cliente_Resena" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_Clien__clien__5165187F" Association="Self.FK__TBL_Clien__clien__5165187F">
+            <End Role="TBL_Cliente" EntitySet="TBL_Cliente" />
+            <End Role="TBL_Cliente_Preferencia" EntitySet="TBL_Cliente_Preferencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_Clien__clien__5535A963" Association="Self.FK__TBL_Clien__clien__5535A963">
+            <End Role="TBL_Cliente" EntitySet="TBL_Cliente" />
+            <End Role="TBL_Cliente_Puntos" EntitySet="TBL_Cliente_Puntos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_Clien__prefe__52593CB8" Association="Self.FK__TBL_Clien__prefe__52593CB8">
+            <End Role="TBL_Preferencias" EntitySet="TBL_Preferencias" />
+            <End Role="TBL_Cliente_Preferencia" EntitySet="TBL_Cliente_Preferencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_Clien__punto__5629CD9C" Association="Self.FK__TBL_Clien__punto__5629CD9C">
+            <End Role="TBL_Puntos" EntitySet="TBL_Puntos" />
+            <End Role="TBL_Cliente_Puntos" EntitySet="TBL_Cliente_Puntos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_Clien__resen__4E88ABD4" Association="Self.FK__TBL_Clien__resen__4E88ABD4">
+            <End Role="TBL_Resena" EntitySet="TBL_Resena" />
+            <End Role="TBL_Cliente_Resena" EntitySet="TBL_Cliente_Resena" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_MENU___menuI__4AB81AF0" Association="Self.FK__TBL_MENU___menuI__4AB81AF0">
+            <End Role="TBL_Menu" EntitySet="TBL_Menu" />
+            <End Role="TBL_MENU_PLATO" EntitySet="TBL_MENU_PLATO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_MENU___plato__49C3F6B7" Association="Self.FK__TBL_MENU___plato__49C3F6B7">
+            <End Role="TBL_Plato" EntitySet="TBL_Plato" />
+            <End Role="TBL_MENU_PLATO" EntitySet="TBL_MENU_PLATO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_Resta__promo__5DCAEF64" Association="Self.FK__TBL_Resta__promo__5DCAEF64">
+            <End Role="TBL_Promociones" EntitySet="TBL_Promociones" />
+            <End Role="TBL_Restaurante_Promociones" EntitySet="TBL_Restaurante_Promociones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_Resta__Resta__59063A47" Association="Self.FK__TBL_Resta__Resta__59063A47">
+            <End Role="TBL_Restaurante" EntitySet="TBL_Restaurante" />
+            <End Role="TBL_Restaurante_Sedes" EntitySet="TBL_Restaurante_Sedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_Resta__Resta__5CD6CB2B" Association="Self.FK__TBL_Resta__Resta__5CD6CB2B">
+            <End Role="TBL_Restaurante" EntitySet="TBL_Restaurante" />
+            <End Role="TBL_Restaurante_Promociones" EntitySet="TBL_Restaurante_Promociones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_Resta__sedeI__59FA5E80" Association="Self.FK__TBL_Resta__sedeI__59FA5E80">
+            <End Role="TBL_SEDE" EntitySet="TBL_SEDE" />
+            <End Role="TBL_Restaurante_Sedes" EntitySet="TBL_Restaurante_Sedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Administrador_TBL_Restaurante" Association="Self.FK_TBL_Administrador_TBL_Restaurante">
+            <End Role="TBL_Restaurante" EntitySet="TBL_Restaurante" />
+            <End Role="TBL_Administrador" EntitySet="TBL_Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Preferencias_TBL_Plato" Association="Self.FK_TBL_Preferencias_TBL_Plato">
+            <End Role="TBL_Plato" EntitySet="TBL_Plato" />
+            <End Role="TBL_Preferencias" EntitySet="TBL_Preferencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Preferencias_TBL_Restaurante" Association="Self.FK_TBL_Preferencias_TBL_Restaurante">
+            <End Role="TBL_Restaurante" EntitySet="TBL_Restaurante" />
+            <End Role="TBL_Preferencias" EntitySet="TBL_Preferencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Resena_TBL_Cliente" Association="Self.FK_TBL_Resena_TBL_Cliente">
+            <End Role="TBL_Cliente" EntitySet="TBL_Cliente" />
+            <End Role="TBL_Resena" EntitySet="TBL_Resena" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Resena_TBL_Restaurante" Association="Self.FK_TBL_Resena_TBL_Restaurante">
+            <End Role="TBL_Restaurante" EntitySet="TBL_Restaurante" />
+            <End Role="TBL_Resena" EntitySet="TBL_Resena" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Restaurante_TBL_Administrador" Association="Self.FK_TBL_Restaurante_TBL_Administrador">
+            <End Role="TBL_Administrador" EntitySet="TBL_Administrador" />
+            <End Role="TBL_Restaurante" EntitySet="TBL_Restaurante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Restaurante_TBL_Restaurante" Association="Self.FK_TBL_Restaurante_TBL_Restaurante">
+            <End Role="TBL_Restaurante" EntitySet="TBL_Restaurante" />
+            <End Role="TBL_Restaurante1" EntitySet="TBL_Restaurante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SEDE_TBL_Menu" Association="Self.FK_TBL_SEDE_TBL_Menu">
+            <End Role="TBL_Menu" EntitySet="TBL_Menu" />
+            <End Role="TBL_SEDE" EntitySet="TBL_SEDE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBS_NEIGHBORFOOD2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBL_Administrador">
+          <Key>
+            <PropertyRef Name="PK_Cedula_Administrador" />
+          </Key>
+          <Property Name="PK_Cedula_Administrador" Type="Int32" Nullable="false" />
+          <Property Name="ADM_Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ADM_Apellido" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ADM_Genero" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ADM_CorreoElectronico" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ADM_Contrasena" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ADM_Telefono" Type="Int32" Nullable="false" />
+          <Property Name="FK_CodRestaurante" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TBL_Restaurante" Relationship="Self.FK_TBL_Administrador_TBL_Restaurante" FromRole="TBL_Administrador" ToRole="TBL_Restaurante" />
+          <NavigationProperty Name="TBL_Restaurante1" Relationship="Self.FK_TBL_Restaurante_TBL_Administrador" FromRole="TBL_Administrador" ToRole="TBL_Restaurante" />
+        </EntityType>
+        <EntityType Name="TBL_Cliente">
+          <Key>
+            <PropertyRef Name="PK_Cedula_Cliente" />
+          </Key>
+          <Property Name="PK_Cedula_Cliente" Type="Int32" Nullable="false" />
+          <Property Name="CLI_Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLI_Apellido" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLI_Genero" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLI_CorreoElectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLI_FechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CLI_Ciudad" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLI_Barrio" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLI_Telefono" Type="Int32" Nullable="false" />
+          <Property Name="CLI_Contrasena" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TBL_Resena" Relationship="Self.FK_TBL_Resena_TBL_Cliente" FromRole="TBL_Cliente" ToRole="TBL_Resena" />
+          <NavigationProperty Name="TBL_Preferencias" Relationship="Self.TBL_Cliente_Preferencia" FromRole="TBL_Cliente" ToRole="TBL_Preferencias" />
+          <NavigationProperty Name="TBL_Puntos" Relationship="Self.TBL_Cliente_Puntos" FromRole="TBL_Cliente" ToRole="TBL_Puntos" />
+          <NavigationProperty Name="TBL_Resena1" Relationship="Self.TBL_Cliente_Resena" FromRole="TBL_Cliente" ToRole="TBL_Resena" />
+        </EntityType>
+        <EntityType Name="TBL_Menu">
+          <Key>
+            <PropertyRef Name="PK_CodigoMenu" />
+          </Key>
+          <Property Name="PK_CodigoMenu" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TBL_SEDE" Relationship="Self.FK_TBL_SEDE_TBL_Menu" FromRole="TBL_Menu" ToRole="TBL_SEDE" />
+          <NavigationProperty Name="TBL_Plato" Relationship="Self.TBL_MENU_PLATO" FromRole="TBL_Menu" ToRole="TBL_Plato" />
+        </EntityType>
+        <EntityType Name="TBL_Plato">
+          <Key>
+            <PropertyRef Name="PK_CodigoPlato" />
+          </Key>
+          <Property Name="PK_CodigoPlato" Type="Int32" Nullable="false" />
+          <Property Name="PLA_NombrePlato" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PLA_Precio" Type="Double" Nullable="false" />
+          <Property Name="PLA_Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PLA_Ingredientes" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TBL_Preferencias" Relationship="Self.FK_TBL_Preferencias_TBL_Plato" FromRole="TBL_Plato" ToRole="TBL_Preferencias" />
+          <NavigationProperty Name="TBL_Menu" Relationship="Self.TBL_MENU_PLATO" FromRole="TBL_Plato" ToRole="TBL_Menu" />
+        </EntityType>
+        <EntityType Name="TBL_Preferencias">
+          <Key>
+            <PropertyRef Name="PK_PrefID" />
+          </Key>
+          <Property Name="PK_PrefID" Type="Int32" Nullable="false" />
+          <Property Name="PRE_Tematica" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FK_RestauranteID" Type="Int32" Nullable="false" />
+          <Property Name="FK_PlatoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TBL_Plato" Relationship="Self.FK_TBL_Preferencias_TBL_Plato" FromRole="TBL_Preferencias" ToRole="TBL_Plato" />
+          <NavigationProperty Name="TBL_Restaurante" Relationship="Self.FK_TBL_Preferencias_TBL_Restaurante" FromRole="TBL_Preferencias" ToRole="TBL_Restaurante" />
+          <NavigationProperty Name="TBL_Cliente" Relationship="Self.TBL_Cliente_Preferencia" FromRole="TBL_Preferencias" ToRole="TBL_Cliente" />
+        </EntityType>
+        <EntityType Name="TBL_Promociones">
+          <Key>
+            <PropertyRef Name="PK_PromocionId" />
+          </Key>
+          <Property Name="PK_PromocionId" Type="Int32" Nullable="false" />
+          <Property Name="PRO_Descuento" Type="Double" Nullable="false" />
+          <Property Name="PRO_puntosParaCanjear" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TBL_Restaurante" Relationship="Self.TBL_Restaurante_Promociones" FromRole="TBL_Promociones" ToRole="TBL_Restaurante" />
+        </EntityType>
+        <EntityType Name="TBL_Puntos">
+          <Key>
+            <PropertyRef Name="PK_CodigoPuntos" />
+          </Key>
+          <Property Name="PK_CodigoPuntos" Type="Int32" Nullable="false" />
+          <Property Name="PUN_Cantidad" Type="Int32" />
+          <Property Name="PUN_FechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PUN_FechaCaducidad" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TBL_Cliente" Relationship="Self.TBL_Cliente_Puntos" FromRole="TBL_Puntos" ToRole="TBL_Cliente" />
+        </EntityType>
+        <EntityType Name="TBL_Resena">
+          <Key>
+            <PropertyRef Name="PK_CodigoReseña" />
+          </Key>
+          <Property Name="PK_CodigoReseña" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RES_Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RES_Calificacion" Type="Double" Nullable="false" />
+          <Property Name="RES_Opinion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="FK_CodCliente" Type="Int32" Nullable="false" />
+          <Property Name="FK_CodRestaurante" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TBL_Cliente" Relationship="Self.FK_TBL_Resena_TBL_Cliente" FromRole="TBL_Resena" ToRole="TBL_Cliente" />
+          <NavigationProperty Name="TBL_Restaurante" Relationship="Self.FK_TBL_Resena_TBL_Restaurante" FromRole="TBL_Resena" ToRole="TBL_Restaurante" />
+          <NavigationProperty Name="TBL_Cliente1" Relationship="Self.TBL_Cliente_Resena" FromRole="TBL_Resena" ToRole="TBL_Cliente" />
+        </EntityType>
+        <EntityType Name="TBL_Restaurante">
+          <Key>
+            <PropertyRef Name="PK_CodigoRestaurante" />
+          </Key>
+          <Property Name="PK_CodigoRestaurante" Type="Int32" Nullable="false" />
+          <Property Name="RESTA_Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RESTA_Telefono" Type="Int32" Nullable="false" />
+          <Property Name="RESTA_Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FK_CodigoAdmin" Type="Int32" />
+          <NavigationProperty Name="TBL_Administrador" Relationship="Self.FK_TBL_Administrador_TBL_Restaurante" FromRole="TBL_Restaurante" ToRole="TBL_Administrador" />
+          <NavigationProperty Name="TBL_Administrador1" Relationship="Self.FK_TBL_Restaurante_TBL_Administrador" FromRole="TBL_Restaurante" ToRole="TBL_Administrador" />
+          <NavigationProperty Name="TBL_Preferencias" Relationship="Self.FK_TBL_Preferencias_TBL_Restaurante" FromRole="TBL_Restaurante" ToRole="TBL_Preferencias" />
+          <NavigationProperty Name="TBL_Resena" Relationship="Self.FK_TBL_Resena_TBL_Restaurante" FromRole="TBL_Restaurante" ToRole="TBL_Resena" />
+          <NavigationProperty Name="TBL_Restaurante1" Relationship="Self.FK_TBL_Restaurante_TBL_Restaurante" FromRole="TBL_Restaurante" ToRole="TBL_Restaurante1" />
+          <NavigationProperty Name="TBL_Restaurante2" Relationship="Self.FK_TBL_Restaurante_TBL_Restaurante" FromRole="TBL_Restaurante1" ToRole="TBL_Restaurante" />
+          <NavigationProperty Name="TBL_Promociones" Relationship="Self.TBL_Restaurante_Promociones" FromRole="TBL_Restaurante" ToRole="TBL_Promociones" />
+          <NavigationProperty Name="TBL_SEDE" Relationship="Self.TBL_Restaurante_Sedes" FromRole="TBL_Restaurante" ToRole="TBL_SEDE" />
+        </EntityType>
+        <EntityType Name="TBL_SEDE">
+          <Key>
+            <PropertyRef Name="PK_SedeID" />
+          </Key>
+          <Property Name="PK_SedeID" Type="Int32" Nullable="false" />
+          <Property Name="SED_Direccion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SED_Telefono" Type="Int64" Nullable="false" />
+          <Property Name="FK_MenuID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TBL_Menu" Relationship="Self.FK_TBL_SEDE_TBL_Menu" FromRole="TBL_SEDE" ToRole="TBL_Menu" />
+          <NavigationProperty Name="TBL_Restaurante" Relationship="Self.TBL_Restaurante_Sedes" FromRole="TBL_SEDE" ToRole="TBL_Restaurante" />
+        </EntityType>
+        <Association Name="FK_TBL_Administrador_TBL_Restaurante">
+          <End Role="TBL_Restaurante" Type="Self.TBL_Restaurante" Multiplicity="1" />
+          <End Role="TBL_Administrador" Type="Self.TBL_Administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Restaurante">
+              <PropertyRef Name="PK_CodigoRestaurante" />
+            </Principal>
+            <Dependent Role="TBL_Administrador">
+              <PropertyRef Name="FK_CodRestaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Restaurante_TBL_Administrador">
+          <End Role="TBL_Administrador" Type="Self.TBL_Administrador" Multiplicity="0..1" />
+          <End Role="TBL_Restaurante" Type="Self.TBL_Restaurante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Administrador">
+              <PropertyRef Name="PK_Cedula_Administrador" />
+            </Principal>
+            <Dependent Role="TBL_Restaurante">
+              <PropertyRef Name="FK_CodigoAdmin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Resena_TBL_Cliente">
+          <End Role="TBL_Cliente" Type="Self.TBL_Cliente" Multiplicity="1" />
+          <End Role="TBL_Resena" Type="Self.TBL_Resena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Cliente">
+              <PropertyRef Name="PK_Cedula_Cliente" />
+            </Principal>
+            <Dependent Role="TBL_Resena">
+              <PropertyRef Name="FK_CodCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SEDE_TBL_Menu">
+          <End Role="TBL_Menu" Type="Self.TBL_Menu" Multiplicity="1" />
+          <End Role="TBL_SEDE" Type="Self.TBL_SEDE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Menu">
+              <PropertyRef Name="PK_CodigoMenu" />
+            </Principal>
+            <Dependent Role="TBL_SEDE">
+              <PropertyRef Name="FK_MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Preferencias_TBL_Plato">
+          <End Role="TBL_Plato" Type="Self.TBL_Plato" Multiplicity="1" />
+          <End Role="TBL_Preferencias" Type="Self.TBL_Preferencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Plato">
+              <PropertyRef Name="PK_CodigoPlato" />
+            </Principal>
+            <Dependent Role="TBL_Preferencias">
+              <PropertyRef Name="FK_PlatoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Preferencias_TBL_Restaurante">
+          <End Role="TBL_Restaurante" Type="Self.TBL_Restaurante" Multiplicity="1" />
+          <End Role="TBL_Preferencias" Type="Self.TBL_Preferencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Restaurante">
+              <PropertyRef Name="PK_CodigoRestaurante" />
+            </Principal>
+            <Dependent Role="TBL_Preferencias">
+              <PropertyRef Name="FK_RestauranteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Resena_TBL_Restaurante">
+          <End Role="TBL_Restaurante" Type="Self.TBL_Restaurante" Multiplicity="1" />
+          <End Role="TBL_Resena" Type="Self.TBL_Resena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Restaurante">
+              <PropertyRef Name="PK_CodigoRestaurante" />
+            </Principal>
+            <Dependent Role="TBL_Resena">
+              <PropertyRef Name="FK_CodRestaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Restaurante_TBL_Restaurante">
+          <End Role="TBL_Restaurante" Type="Self.TBL_Restaurante" Multiplicity="1" />
+          <End Role="TBL_Restaurante1" Type="Self.TBL_Restaurante" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Restaurante">
+              <PropertyRef Name="PK_CodigoRestaurante" />
+            </Principal>
+            <Dependent Role="TBL_Restaurante1">
+              <PropertyRef Name="PK_CodigoRestaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TBL_Cliente_Preferencia">
+          <End Role="TBL_Cliente" Type="Self.TBL_Cliente" Multiplicity="*" />
+          <End Role="TBL_Preferencias" Type="Self.TBL_Preferencias" Multiplicity="*" />
+        </Association>
+        <Association Name="TBL_Cliente_Puntos">
+          <End Role="TBL_Cliente" Type="Self.TBL_Cliente" Multiplicity="*" />
+          <End Role="TBL_Puntos" Type="Self.TBL_Puntos" Multiplicity="*" />
+        </Association>
+        <Association Name="TBL_Cliente_Resena">
+          <End Role="TBL_Cliente" Type="Self.TBL_Cliente" Multiplicity="*" />
+          <End Role="TBL_Resena" Type="Self.TBL_Resena" Multiplicity="*" />
+        </Association>
+        <Association Name="TBL_MENU_PLATO">
+          <End Role="TBL_Menu" Type="Self.TBL_Menu" Multiplicity="*" />
+          <End Role="TBL_Plato" Type="Self.TBL_Plato" Multiplicity="*" />
+        </Association>
+        <Association Name="TBL_Restaurante_Promociones">
+          <End Role="TBL_Promociones" Type="Self.TBL_Promociones" Multiplicity="*" />
+          <End Role="TBL_Restaurante" Type="Self.TBL_Restaurante" Multiplicity="*" />
+        </Association>
+        <Association Name="TBL_Restaurante_Sedes">
+          <End Role="TBL_Restaurante" Type="Self.TBL_Restaurante" Multiplicity="*" />
+          <End Role="TBL_SEDE" Type="Self.TBL_SEDE" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DBS_NEIGHBORFOOD2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBL_Administrador" EntityType="Self.TBL_Administrador" />
+          <EntitySet Name="TBL_Cliente" EntityType="Self.TBL_Cliente" />
+          <EntitySet Name="TBL_Menu" EntityType="Self.TBL_Menu" />
+          <EntitySet Name="TBL_Plato" EntityType="Self.TBL_Plato" />
+          <EntitySet Name="TBL_Preferencias" EntityType="Self.TBL_Preferencias" />
+          <EntitySet Name="TBL_Promociones" EntityType="Self.TBL_Promociones" />
+          <EntitySet Name="TBL_Puntos" EntityType="Self.TBL_Puntos" />
+          <EntitySet Name="TBL_Resena" EntityType="Self.TBL_Resena" />
+          <EntitySet Name="TBL_Restaurante" EntityType="Self.TBL_Restaurante" />
+          <EntitySet Name="TBL_SEDE" EntityType="Self.TBL_SEDE" />
+          <AssociationSet Name="FK_TBL_Administrador_TBL_Restaurante" Association="Self.FK_TBL_Administrador_TBL_Restaurante">
+            <End Role="TBL_Restaurante" EntitySet="TBL_Restaurante" />
+            <End Role="TBL_Administrador" EntitySet="TBL_Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Restaurante_TBL_Administrador" Association="Self.FK_TBL_Restaurante_TBL_Administrador">
+            <End Role="TBL_Administrador" EntitySet="TBL_Administrador" />
+            <End Role="TBL_Restaurante" EntitySet="TBL_Restaurante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Resena_TBL_Cliente" Association="Self.FK_TBL_Resena_TBL_Cliente">
+            <End Role="TBL_Cliente" EntitySet="TBL_Cliente" />
+            <End Role="TBL_Resena" EntitySet="TBL_Resena" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SEDE_TBL_Menu" Association="Self.FK_TBL_SEDE_TBL_Menu">
+            <End Role="TBL_Menu" EntitySet="TBL_Menu" />
+            <End Role="TBL_SEDE" EntitySet="TBL_SEDE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Preferencias_TBL_Plato" Association="Self.FK_TBL_Preferencias_TBL_Plato">
+            <End Role="TBL_Plato" EntitySet="TBL_Plato" />
+            <End Role="TBL_Preferencias" EntitySet="TBL_Preferencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Preferencias_TBL_Restaurante" Association="Self.FK_TBL_Preferencias_TBL_Restaurante">
+            <End Role="TBL_Restaurante" EntitySet="TBL_Restaurante" />
+            <End Role="TBL_Preferencias" EntitySet="TBL_Preferencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Resena_TBL_Restaurante" Association="Self.FK_TBL_Resena_TBL_Restaurante">
+            <End Role="TBL_Restaurante" EntitySet="TBL_Restaurante" />
+            <End Role="TBL_Resena" EntitySet="TBL_Resena" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Restaurante_TBL_Restaurante" Association="Self.FK_TBL_Restaurante_TBL_Restaurante">
+            <End Role="TBL_Restaurante" EntitySet="TBL_Restaurante" />
+            <End Role="TBL_Restaurante1" EntitySet="TBL_Restaurante" />
+          </AssociationSet>
+          <AssociationSet Name="TBL_Cliente_Preferencia" Association="Self.TBL_Cliente_Preferencia">
+            <End Role="TBL_Cliente" EntitySet="TBL_Cliente" />
+            <End Role="TBL_Preferencias" EntitySet="TBL_Preferencias" />
+          </AssociationSet>
+          <AssociationSet Name="TBL_Cliente_Puntos" Association="Self.TBL_Cliente_Puntos">
+            <End Role="TBL_Cliente" EntitySet="TBL_Cliente" />
+            <End Role="TBL_Puntos" EntitySet="TBL_Puntos" />
+          </AssociationSet>
+          <AssociationSet Name="TBL_Cliente_Resena" Association="Self.TBL_Cliente_Resena">
+            <End Role="TBL_Cliente" EntitySet="TBL_Cliente" />
+            <End Role="TBL_Resena" EntitySet="TBL_Resena" />
+          </AssociationSet>
+          <AssociationSet Name="TBL_MENU_PLATO" Association="Self.TBL_MENU_PLATO">
+            <End Role="TBL_Menu" EntitySet="TBL_Menu" />
+            <End Role="TBL_Plato" EntitySet="TBL_Plato" />
+          </AssociationSet>
+          <AssociationSet Name="TBL_Restaurante_Promociones" Association="Self.TBL_Restaurante_Promociones">
+            <End Role="TBL_Promociones" EntitySet="TBL_Promociones" />
+            <End Role="TBL_Restaurante" EntitySet="TBL_Restaurante" />
+          </AssociationSet>
+          <AssociationSet Name="TBL_Restaurante_Sedes" Association="Self.TBL_Restaurante_Sedes">
+            <End Role="TBL_Restaurante" EntitySet="TBL_Restaurante" />
+            <End Role="TBL_SEDE" EntitySet="TBL_SEDE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBS_NEIGHBORFOOD2ModelStoreContainer" CdmEntityContainer="DBS_NEIGHBORFOOD2Entities">
+          <EntitySetMapping Name="TBL_Administrador">
+            <EntityTypeMapping TypeName="DBS_NEIGHBORFOOD2Model.TBL_Administrador">
+              <MappingFragment StoreEntitySet="TBL_Administrador">
+                <ScalarProperty Name="PK_Cedula_Administrador" ColumnName="PK_Cedula_Administrador" />
+                <ScalarProperty Name="ADM_Nombre" ColumnName="ADM_Nombre" />
+                <ScalarProperty Name="ADM_Apellido" ColumnName="ADM_Apellido" />
+                <ScalarProperty Name="ADM_Genero" ColumnName="ADM_Genero" />
+                <ScalarProperty Name="ADM_CorreoElectronico" ColumnName="ADM_CorreoElectronico" />
+                <ScalarProperty Name="ADM_Contrasena" ColumnName="ADM_Contrasena" />
+                <ScalarProperty Name="ADM_Telefono" ColumnName="ADM_Telefono" />
+                <ScalarProperty Name="FK_CodRestaurante" ColumnName="FK_CodRestaurante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Cliente">
+            <EntityTypeMapping TypeName="DBS_NEIGHBORFOOD2Model.TBL_Cliente">
+              <MappingFragment StoreEntitySet="TBL_Cliente">
+                <ScalarProperty Name="PK_Cedula_Cliente" ColumnName="PK_Cedula_Cliente" />
+                <ScalarProperty Name="CLI_Nombre" ColumnName="CLI_Nombre" />
+                <ScalarProperty Name="CLI_Apellido" ColumnName="CLI_Apellido" />
+                <ScalarProperty Name="CLI_Genero" ColumnName="CLI_Genero" />
+                <ScalarProperty Name="CLI_CorreoElectronico" ColumnName="CLI_CorreoElectronico" />
+                <ScalarProperty Name="CLI_FechaNacimiento" ColumnName="CLI_FechaNacimiento" />
+                <ScalarProperty Name="CLI_Ciudad" ColumnName="CLI_Ciudad" />
+                <ScalarProperty Name="CLI_Barrio" ColumnName="CLI_Barrio" />
+                <ScalarProperty Name="CLI_Telefono" ColumnName="CLI_Telefono" />
+                <ScalarProperty Name="CLI_Contrasena" ColumnName="CLI_Contrasena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Menu">
+            <EntityTypeMapping TypeName="DBS_NEIGHBORFOOD2Model.TBL_Menu">
+              <MappingFragment StoreEntitySet="TBL_Menu">
+                <ScalarProperty Name="PK_CodigoMenu" ColumnName="PK_CodigoMenu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Plato">
+            <EntityTypeMapping TypeName="DBS_NEIGHBORFOOD2Model.TBL_Plato">
+              <MappingFragment StoreEntitySet="TBL_Plato">
+                <ScalarProperty Name="PK_CodigoPlato" ColumnName="PK_CodigoPlato" />
+                <ScalarProperty Name="PLA_NombrePlato" ColumnName="PLA_NombrePlato" />
+                <ScalarProperty Name="PLA_Precio" ColumnName="PLA_Precio" />
+                <ScalarProperty Name="PLA_Descripcion" ColumnName="PLA_Descripcion" />
+                <ScalarProperty Name="PLA_Ingredientes" ColumnName="PLA_Ingredientes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Preferencias">
+            <EntityTypeMapping TypeName="DBS_NEIGHBORFOOD2Model.TBL_Preferencias">
+              <MappingFragment StoreEntitySet="TBL_Preferencias">
+                <ScalarProperty Name="PK_PrefID" ColumnName="PK_PrefID" />
+                <ScalarProperty Name="PRE_Tematica" ColumnName="PRE_Tematica" />
+                <ScalarProperty Name="FK_RestauranteID" ColumnName="FK_RestauranteID" />
+                <ScalarProperty Name="FK_PlatoId" ColumnName="FK_PlatoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Promociones">
+            <EntityTypeMapping TypeName="DBS_NEIGHBORFOOD2Model.TBL_Promociones">
+              <MappingFragment StoreEntitySet="TBL_Promociones">
+                <ScalarProperty Name="PK_PromocionId" ColumnName="PK_PromocionId" />
+                <ScalarProperty Name="PRO_Descuento" ColumnName="PRO_Descuento" />
+                <ScalarProperty Name="PRO_puntosParaCanjear" ColumnName="PRO_puntosParaCanjear" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Puntos">
+            <EntityTypeMapping TypeName="DBS_NEIGHBORFOOD2Model.TBL_Puntos">
+              <MappingFragment StoreEntitySet="TBL_Puntos">
+                <ScalarProperty Name="PK_CodigoPuntos" ColumnName="PK_CodigoPuntos" />
+                <ScalarProperty Name="PUN_Cantidad" ColumnName="PUN_Cantidad" />
+                <ScalarProperty Name="PUN_FechaCreacion" ColumnName="PUN_FechaCreacion" />
+                <ScalarProperty Name="PUN_FechaCaducidad" ColumnName="PUN_FechaCaducidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Resena">
+            <EntityTypeMapping TypeName="DBS_NEIGHBORFOOD2Model.TBL_Resena">
+              <MappingFragment StoreEntitySet="TBL_Resena">
+                <ScalarProperty Name="PK_CodigoReseña" ColumnName="PK_CodigoReseña" />
+                <ScalarProperty Name="RES_Fecha" ColumnName="RES_Fecha" />
+                <ScalarProperty Name="RES_Calificacion" ColumnName="RES_Calificacion" />
+                <ScalarProperty Name="RES_Opinion" ColumnName="RES_Opinion" />
+                <ScalarProperty Name="FK_CodCliente" ColumnName="FK_CodCliente" />
+                <ScalarProperty Name="FK_CodRestaurante" ColumnName="FK_CodRestaurante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Restaurante">
+            <EntityTypeMapping TypeName="DBS_NEIGHBORFOOD2Model.TBL_Restaurante">
+              <MappingFragment StoreEntitySet="TBL_Restaurante">
+                <ScalarProperty Name="PK_CodigoRestaurante" ColumnName="PK_CodigoRestaurante" />
+                <ScalarProperty Name="RESTA_Nombre" ColumnName="RESTA_Nombre" />
+                <ScalarProperty Name="RESTA_Telefono" ColumnName="RESTA_Telefono" />
+                <ScalarProperty Name="RESTA_Correo" ColumnName="RESTA_Correo" />
+                <ScalarProperty Name="FK_CodigoAdmin" ColumnName="FK_CodigoAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_SEDE">
+            <EntityTypeMapping TypeName="DBS_NEIGHBORFOOD2Model.TBL_SEDE">
+              <MappingFragment StoreEntitySet="TBL_SEDE">
+                <ScalarProperty Name="PK_SedeID" ColumnName="PK_SedeID" />
+                <ScalarProperty Name="SED_Direccion" ColumnName="SED_Direccion" />
+                <ScalarProperty Name="SED_Telefono" ColumnName="SED_Telefono" />
+                <ScalarProperty Name="FK_MenuID" ColumnName="FK_MenuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="TBL_Cliente_Preferencia" TypeName="DBS_NEIGHBORFOOD2Model.TBL_Cliente_Preferencia" StoreEntitySet="TBL_Cliente_Preferencia">
+            <EndProperty Name="TBL_Cliente">
+              <ScalarProperty Name="PK_Cedula_Cliente" ColumnName="clienteId" />
+            </EndProperty>
+            <EndProperty Name="TBL_Preferencias">
+              <ScalarProperty Name="PK_PrefID" ColumnName="preferenciaId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TBL_Cliente_Puntos" TypeName="DBS_NEIGHBORFOOD2Model.TBL_Cliente_Puntos" StoreEntitySet="TBL_Cliente_Puntos">
+            <EndProperty Name="TBL_Cliente">
+              <ScalarProperty Name="PK_Cedula_Cliente" ColumnName="clienteId" />
+            </EndProperty>
+            <EndProperty Name="TBL_Puntos">
+              <ScalarProperty Name="PK_CodigoPuntos" ColumnName="puntosId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TBL_Cliente_Resena" TypeName="DBS_NEIGHBORFOOD2Model.TBL_Cliente_Resena" StoreEntitySet="TBL_Cliente_Resena">
+            <EndProperty Name="TBL_Cliente">
+              <ScalarProperty Name="PK_Cedula_Cliente" ColumnName="clienteId" />
+            </EndProperty>
+            <EndProperty Name="TBL_Resena">
+              <ScalarProperty Name="PK_CodigoReseña" ColumnName="resenaId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TBL_MENU_PLATO" TypeName="DBS_NEIGHBORFOOD2Model.TBL_MENU_PLATO" StoreEntitySet="TBL_MENU_PLATO">
+            <EndProperty Name="TBL_Menu">
+              <ScalarProperty Name="PK_CodigoMenu" ColumnName="menuId" />
+            </EndProperty>
+            <EndProperty Name="TBL_Plato">
+              <ScalarProperty Name="PK_CodigoPlato" ColumnName="platoId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TBL_Restaurante_Promociones" TypeName="DBS_NEIGHBORFOOD2Model.TBL_Restaurante_Promociones" StoreEntitySet="TBL_Restaurante_Promociones">
+            <EndProperty Name="TBL_Promociones">
+              <ScalarProperty Name="PK_PromocionId" ColumnName="promoId" />
+            </EndProperty>
+            <EndProperty Name="TBL_Restaurante">
+              <ScalarProperty Name="PK_CodigoRestaurante" ColumnName="RestauranteId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TBL_Restaurante_Sedes" TypeName="DBS_NEIGHBORFOOD2Model.TBL_Restaurante_Sedes" StoreEntitySet="TBL_Restaurante_Sedes">
+            <EndProperty Name="TBL_Restaurante">
+              <ScalarProperty Name="PK_CodigoRestaurante" ColumnName="RestauranteId" />
+            </EndProperty>
+            <EndProperty Name="TBL_SEDE">
+              <ScalarProperty Name="PK_SedeID" ColumnName="sedeId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
